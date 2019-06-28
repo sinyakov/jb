@@ -3,6 +3,7 @@ const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   context: __dirname,
@@ -30,7 +31,13 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name]-[contenthash:8].css"
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: "./static",
+        to: "static"
+      }
+    ])
   ],
   module: {
     rules: [
