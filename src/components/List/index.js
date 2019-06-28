@@ -7,15 +7,14 @@ export function List({ pages }) {
   return (
     <div>
       {pages.map(pageId => {
-        const { title, url, pages, level, anchors } = pagesDict[pageId];
+        const { title, url, pages, level, anchors, unfolded } = pagesDict[pageId];
 
         return (
           <div key={pageId} style={{ marginLeft: level * 16 }}>
-            <a onClick={() => onCurrentPageChange(pageId)} href={url}>
-              {title}
-            </a>
-            {pages && <List pages={pages} />}
-            {anchors &&
+            <a onClick={() => onCurrentPageChange(pageId)}>{title}</a>
+            {pages && unfolded && <List pages={pages} />}
+            {pageId === currentPage &&
+              anchors &&
               anchors.map(anchorId => {
                 const { anchor, title, url } = anchorsDict[anchorId];
 

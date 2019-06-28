@@ -39,9 +39,11 @@ export function App() {
   });
 
   const onCurrentPageChange = useCallback(function(id) {
+    dispatch({
+      type: types.TOGGLE_PAGE_UNFOLDED,
+      payload: id,
+    });
     // TODO:
-    // 1. change currentPage
-    // 2.1 unfold current page
     // 2.2 fold current page and descendants
   });
 
