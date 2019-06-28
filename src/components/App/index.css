@@ -1,7 +1,22 @@
-.test {
-  background-color: #e6f;
+@font-face {
+  font-weight: 400;
+  font-family: "Open Sans";
+  src: url("https://resources.jetbrains.com/storage/help-app/v2/fonts/open-sans-latin-400.woff2")
+    format("woff2");
+}
 
-  &:hover {
-    background-color: #fe3;
-  }
+@font-face {
+  font-weight: 500;
+  font-family: "Open Sans";
+  src: url("https://resources.jetbrains.com/storage/help-app/v2/fonts/open-sans-latin-600.woff2")
+    format("woff2");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fafafa;
+  font-family: "Open Sans";
 }
