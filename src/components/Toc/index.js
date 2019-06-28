@@ -1,6 +1,6 @@
 import React, { useReducer, useCallback, useEffect } from "react";
 import "./index.css";
-import { getHelpTOC } from "../../api/getHelpTOC";
+import { getHelpToc } from "../../api/getHelpToc";
 import { reducer } from "./reducer";
 import * as types from "./constants";
 import { SectionsContext } from "../../contexts/SectionsContext";
@@ -14,12 +14,12 @@ const initState = {
   pagesDict: null,
 };
 
-export function App() {
+export function Toc() {
   const [state, dispatch] = useReducer(reducer, initState);
 
   const fetchData = useCallback(async function() {
     try {
-      const { entities, topLevelIds } = await getHelpTOC();
+      const { entities, topLevelIds } = await getHelpToc();
       const { anchors: anchorsDict, pages: pagesDict } = entities;
 
       dispatch({
@@ -54,15 +54,18 @@ export function App() {
   const { loading, currentPage, topLevelIds, anchorsDict, pagesDict } = state;
 
   return (
-    <SectionsContext.Provider
-      value={{
-        anchorsDict,
-        pagesDict,
-        currentPage,
-        onCurrentPageChange,
-      }}
-    >
-      {loading ? "Loading" : <List pages={topLevelIds} />}
-    </SectionsContext.Provider>
+    <div className="toc-wrapper">
+      <SectionsContext.Provider
+        value={{
+          anchorsDict,
+          pagesDict,
+          currentPage,
+          onCurrentPageChange,
+          prefix: "/toc",
+        }}
+      >
+        {loading ? "Loading" : <List pages={topLevelIds} />}
+      </SectionsContext.Provider>
+    </div>
   );
 }

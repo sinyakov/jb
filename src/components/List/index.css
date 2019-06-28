@@ -1,7 +1,3 @@
-.tree {
-  max-width: 400px;
-}
-
 .tree__section {
   &_current {
     background: #f0f0f0;
@@ -12,13 +8,18 @@
   position: relative;
   display: block;
   padding: 6px;
-  padding-left: 20px;
+  padding-right: 20px;
   color: #343434;
+  text-decoration: none;
   font-size: 14px;
   line-height: 19px;
   cursor: pointer;
 
   user-select: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   &_foldable {
     &::before {

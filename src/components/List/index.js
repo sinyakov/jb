@@ -1,17 +1,23 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import useReactRouter from "use-react-router";
 import cn from "classnames";
 
 import { SectionsContext } from "../../contexts/SectionsContext";
 import "./index.css";
 
 export function List({ pages }) {
-  const { anchorsDict, pagesDict, currentPage, onCurrentPageChange } = useContext(SectionsContext);
+  const { anchorsDict, pagesDict, onCurrentPageChange, prefix } = useContext(SectionsContext);
+  const { match, location } = useReactRouter();
+  const { currentPage } = match.params;
+  const { hash } = location;
 
   return (
     <div className="tree">
       {pages.map(pageId => {
         const { title, url, pages, level, anchors, unfolded } = pagesDict[pageId];
-        const isCurrentPage = pageId === currentPage;
+
+        const isCurrentPage = url === currentPage;
 
         const titleClassName = cn({
           tree__title: true,
@@ -29,22 +35,31 @@ export function List({ pages }) {
         return (
           <div key={pageId}>
             <div className={sectionClassName}>
-              <a onClick={() => onCurrentPageChange(pageId)} className={titleClassName}>
+              <Link
+                onClick={() => onCurrentPageChange(pageId)}
+                to={url ? `${prefix}/${url}` : null}
+                className={titleClassName}
+              >
                 {title}
-              </a>
+              </Link>
               {isCurrentPage &&
                 anchors &&
                 anchors.map(anchorId => {
-                  const { title, url } = anchorsDict[anchorId];
+                  const { anchor, title } = anchorsDict[anchorId];
                   const anchorClassName = cn({
                     tree__title: true,
+                    tree__title_active: anchor === hash,
                     [`tree__title_level${level + 1}`]: true,
                   });
 
                   return (
-                    <a key={anchorId} className={anchorClassName}>
+                    <Link
+                      key={anchorId}
+                      className={anchorClassName}
+                      to={`${prefix}/${url}${anchor}`}
+                    >
                       {title}
-                    </a>
+                    </Link>
                   );
                 })}
             </div>
