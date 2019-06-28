@@ -1,4 +1,6 @@
 import * as types from "./constants";
+import { foldAllDescendants } from "../../utils/foldAllDescendants";
+import { getDescendants } from "../../utils/getDescendants";
 
 export function reducer(state, { type, payload }) {
   switch (type) {
@@ -8,14 +10,19 @@ export function reducer(state, { type, payload }) {
         ...payload,
       };
     case types.TOGGLE_PAGE_UNFOLDED:
+      if (state.pagesDict[payload].unfolded) {
+        return {
+          ...state,
+          pagesDict: foldAllDescendants(state.pagesDict, getDescendants(state.pagesDict, payload)),
+        };
+      }
       return {
         ...state,
-        currentPage: payload,
         pagesDict: {
           ...state.pagesDict,
           [payload]: {
             ...state.pagesDict[payload],
-            unfolded: !state.pagesDict[payload].unfolded,
+            unfolded: true,
           },
         },
       };

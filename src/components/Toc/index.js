@@ -25,16 +25,12 @@ export function Toc({ match }) {
       const { currentPage } = match.params;
       const page = Object.values(pagesDict).find(({ url }) => url === currentPage);
 
-      if (page) {
-        unfoldAllAncestors(pagesDict, page.id);
-      }
-
       dispatch({
         type: types.LOAD_DATA_SUCCESS,
         payload: {
           topLevelIds,
           anchorsDict,
-          pagesDict,
+          pagesDict: unfoldAllAncestors(pagesDict, page.id),
         },
       });
     } catch (e) {
@@ -50,8 +46,6 @@ export function Toc({ match }) {
       type: types.TOGGLE_PAGE_UNFOLDED,
       payload: id,
     });
-    // TODO:
-    // 2.2 fold current page and descendants
   });
 
   useEffect(() => {

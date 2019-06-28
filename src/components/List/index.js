@@ -37,7 +37,7 @@ export function List({ pages }) {
             <div className={sectionClassName}>
               <Link
                 onClick={() => onCurrentPageChange(pageId)}
-                to={url ? `${prefix}/${url}` : null}
+                to={`${prefix}/${url || pages[0].url}`}
                 className={titleClassName}
               >
                 {title}

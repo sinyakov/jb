@@ -1,7 +1,14 @@
-export function unfoldAllAncestors(pages, currentPageId) {
-  let currentPage = pages[currentPageId];
-  while (currentPage) {
-    currentPage.unfolded = true;
-    currentPage = pages[currentPage.parentId];
+export function unfoldAllAncestors(pagesDict, currentPageId) {
+  const updated = { ...pagesDict };
+  let currentId = currentPageId;
+
+  while (currentId) {
+    updated[currentId] = {
+      ...updated[currentId],
+      unfolded: true,
+    };
+    currentId = updated[currentId].parentId;
   }
+
+  return updated;
 }

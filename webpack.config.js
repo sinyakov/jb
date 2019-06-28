@@ -15,6 +15,7 @@ module.exports = {
     path: path.join(__dirname, "./build"),
     publicPath: "/",
   },
+  devtool: "inline-source-map",
   devServer: {
     watchOptions: {
       ignored: /node_modules/,
