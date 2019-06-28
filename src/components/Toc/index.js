@@ -5,22 +5,29 @@ import { reducer } from "./reducer";
 import * as types from "./constants";
 import { SectionsContext } from "../../contexts/SectionsContext";
 import { List } from "../List";
+import { unfoldAllAncestors } from "../../utils/unfoldAllAncestors";
 
 const initState = {
   loading: true,
-  currentPage: null,
   topLevelIds: null,
   anchorsDict: null,
   pagesDict: null,
 };
 
-export function Toc() {
+export function Toc({ match }) {
   const [state, dispatch] = useReducer(reducer, initState);
 
   const fetchData = useCallback(async function() {
     try {
       const { entities, topLevelIds } = await getHelpToc();
       const { anchors: anchorsDict, pages: pagesDict } = entities;
+
+      const { currentPage } = match.params;
+      const page = Object.values(pagesDict).find(({ url }) => url === currentPage);
+
+      if (page) {
+        unfoldAllAncestors(pagesDict, page.id);
+      }
 
       dispatch({
         type: types.LOAD_DATA_SUCCESS,
