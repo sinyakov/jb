@@ -6,6 +6,7 @@ import * as types from "./constants";
 import { SectionsContext } from "../../contexts/SectionsContext";
 import { List } from "../List";
 import { unfoldAllAncestors } from "../../utils/unfoldAllAncestors";
+import { PREFIX } from "../../constants";
 
 const initState = {
   loading: true,
@@ -64,7 +65,7 @@ export function Toc({ match }) {
           pagesDict,
           currentPage,
           onCurrentPageChange,
-          prefix: "/toc",
+          prefix: PREFIX,
         }}
       >
         {loading ? "Loading" : <List pages={topLevelIds} />}
