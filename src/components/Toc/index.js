@@ -23,14 +23,16 @@ export function Toc({ match }) {
       const { anchors: anchorsDict, pages: pagesDict } = entities;
 
       const { currentPage } = match.params;
-      const page = Object.values(pagesDict).find(({ url }) => url === currentPage);
+      const page = currentPage
+        ? Object.values(pagesDict).find(({ url }) => url === currentPage)
+        : null;
 
       dispatch({
         type: types.LOAD_DATA_SUCCESS,
         payload: {
           topLevelIds,
           anchorsDict,
-          pagesDict: unfoldAllAncestors(pagesDict, page.id),
+          pagesDict: unfoldAllAncestors(pagesDict, page ? page.id : null),
         },
       });
     } catch (e) {

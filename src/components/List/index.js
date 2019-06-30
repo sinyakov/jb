@@ -16,8 +16,7 @@ export function List({ pages }) {
     <div className="tree">
       {pages.map(pageId => {
         const { title, url, pages, level, anchors, unfolded } = pagesDict[pageId];
-
-        const isCurrentPage = url === currentPage;
+        const isCurrentPage = Boolean(currentPage) && url === currentPage;
 
         const titleClassName = cn({
           tree__title: true,

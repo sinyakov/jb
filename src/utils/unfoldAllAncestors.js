@@ -1,4 +1,8 @@
 export function unfoldAllAncestors(pagesDict, currentPageId) {
+  if (!currentPageId) {
+    return pagesDict;
+  }
+
   const updated = { ...pagesDict };
   let currentId = currentPageId;
 
