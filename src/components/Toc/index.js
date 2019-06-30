@@ -1,4 +1,5 @@
 import React, { useReducer, useCallback, useEffect } from "react";
+import cn from "classnames";
 import "./index.css";
 import { getHelpToc } from "../../api/getHelpToc";
 import { reducer } from "./reducer";
@@ -57,19 +58,22 @@ export function Toc({ match }) {
 
   const { loading, currentPage, topLevelIds, anchorsDict, pagesDict } = state;
 
+  const className = cn({
+    wrapper: true,
+    wrapper_loading: loading,
+  });
+
   return (
-    <div className="toc-wrapper">
-      <SectionsContext.Provider
-        value={{
-          anchorsDict,
-          pagesDict,
-          currentPage,
-          onCurrentPageChange,
-          prefix: PREFIX,
-        }}
-      >
-        {loading ? "Loading" : <List pages={topLevelIds} />}
-      </SectionsContext.Provider>
-    </div>
+    <SectionsContext.Provider
+      value={{
+        anchorsDict,
+        pagesDict,
+        currentPage,
+        onCurrentPageChange,
+        prefix: PREFIX,
+      }}
+    >
+      <div className={className}>{!loading && <List pages={topLevelIds} />}</div>
+    </SectionsContext.Provider>
   );
 }

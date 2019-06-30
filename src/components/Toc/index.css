@@ -20,10 +20,16 @@ body {
   font-family: "Open Sans";
 }
 
-.toc-wrapper {
+.wrapper {
   overflow-y: scroll;
   padding-top: 40px;
   width: 300px;
   height: 100vh;
-  background: #fafafa;
+  background-color: #fafafa;
+
+  &_loading {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjI0IiBoZWlnaHQ9IjIwOSIgdmVyc2lvbj0iMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjRUJFQkVCIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yMyAyOGgyMDF2MTNIMjN6TTIzIDg0aDIwMXYxM0gyM3pNMjMgNTZoMTc4djEzSDIzek0wIDBoMjAxdjEzSDB6TTIzIDE0MGgyMDF2MTNIMjN6TTIzIDE5NmgyMDF2MTNIMjN6TTIzIDE2OGgxNzh2MTNIMjN6TTAgMTEyaDIwMXYxM0gweiIvPjwvZz48L3N2Zz4=");
+    background-position: 25px 50px;
+    background-repeat: no-repeat;
+  }
 }
