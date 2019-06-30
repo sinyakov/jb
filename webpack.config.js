@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-module.exports = {
+module.exports = (env, argv) => ({
   context: __dirname,
   entry: {
     app: "./src",
@@ -15,7 +15,7 @@ module.exports = {
     path: path.join(__dirname, "./build"),
     publicPath: "/",
   },
-  devtool: "inline-source-map",
+  devtool: argv.mode === "development" && "inline-source-map",
   devServer: {
     watchOptions: {
       ignored: /node_modules/,
@@ -57,4 +57,4 @@ module.exports = {
       },
     ],
   },
-};
+});
