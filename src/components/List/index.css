@@ -24,11 +24,11 @@
   &_foldable {
     &::before {
       position: absolute;
-      top: 10px;
-      left: 0;
+      top: 12px;
       display: inline-block;
-      width: 18px;
-      height: 10px;
+      margin-left: 6px;
+      width: 10px;
+      height: 6px;
       background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI1IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik03LjguNjVhLjI3LjI3IDAgMCAwLS4wOC0uMThsLS40LS40QS4yNS4yNSAwIDAgMCA3LjE2IDBhLjI3LjI3IDAgMCAwLS4xOC4wOEwzLjkgMy4xNS44My4wOEEuMjcuMjcgMCAwIDAgLjY1IDBhLjI3LjI3IDAgMCAwLS4xOC4wOGwtLjQuMzlBLjI3LjI3IDAgMCAwIDAgLjY1QzAgLjcuMDMuNzguMDguODNsMy42NCAzLjY0Yy4wNS4wNS4xMi4wOC4xOC4wOHMuMTMtLjAzLjE4LS4wOEw3LjcyLjgzQS4yNy4yNyAwIDAgMCA3LjguNjV6IiBmaWxsPSIjMzQzNDM0IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=");
       background-position: center;
       background-size: 8px;
@@ -45,39 +45,49 @@
   }
 
   &_active {
-    letter-spacing: -0.3px;
+    letter-spacing: -0.2px;
     font-weight: 500;
   }
 
+  /* заюзать миксины можно, но не нужно */
+
   &_level0 {
-    padding-left: 20px;
+    padding-left: 25px;
 
     &::before {
-      left: 0px;
+      left: 5px;
     }
   }
 
   &_level1 {
-    padding-left: 40px;
+    padding-left: 45px;
 
     &::before {
-      left: 20px;
+      left: 25px;
     }
   }
 
   &_level2 {
-    padding-left: 60px;
+    padding-left: 65px;
 
     &::before {
-      left: 40px;
+      left: 45px;
     }
   }
 
   &_level3 {
-    padding-left: 80px;
+    padding-left: 85px;
 
     &::before {
-      left: 60px;
+      left: 65px;
+    }
+  }
+
+  &_level4 {
+    padding-left: 105px;
+
+    &::before {
+      left: 85px;
     }
   }
 }
